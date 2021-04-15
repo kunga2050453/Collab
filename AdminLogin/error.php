@@ -21,7 +21,7 @@
     <strong>Warning!</strong> Wrong Credientials!!
   </div>
         <br>
-        <a href="login.php?logout=1" class="logout">RE-LOGIN</a>
+        <button type="button"><a href="login.php" class="logout">RE-LOGIN</a></button>
 					<div class="alert alert-warning">
 					Dear user Your Email or Password 
 					seems to be incorrect!

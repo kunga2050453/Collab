@@ -79,4 +79,6 @@ form .field input:valid{
   transition: all 0.3s ease;
 }
 
-
+.logoutbutton{
+  background-color: white;
+}
