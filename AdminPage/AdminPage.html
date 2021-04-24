@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Tax Calculator</title>
+        <title>Admin Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="styles.css">
@@ -12,19 +12,26 @@
         <header class="main-header">
             <div class="container row">
                 <div class="page-title">
-                    <nav class="main-nav">
-                        <ul>
-                            <li><h1><a href="tax_calculator.php">Tax Calculator</a></h1></li>
-                        </ul>
-                    </nav>
+                    <h1>Admin Page</h1>
                 </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="taxcalculator.php">Tax Calculator</a></li>
+                        <li><a href="userfeed.php">User Feed</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="search-bar">
+                    <input type="text" name="email" id="" required>
+                    <button type="submit">Add Admin</button>
+                </div>
+                
                 <div class="search-bar">
                     <nav class="main-nav">
                         <ul>
                             <li><button type="button"><a href="login.php">Logout</a></button></li>
                         </ul>
                     </nav>
-                    
                 </div>
             </div>
         </header>
@@ -116,6 +123,12 @@
                 </div>  
             <footer class="footer group">
                 <div class="copyright">Copyright &copy; 2019. All rights reserved</div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="taxcalculator.php">Tax Calculator</a></li>
+                        <li><a href="userfeed.php">User Feed</a></li>
+                    </ul>
+                </div>
             </footer>
         </div>
         <script>
