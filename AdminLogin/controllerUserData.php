@@ -14,6 +14,17 @@ if(isset($_POST['signup'])){
     if($password !== $cpassword){
         $errors['password'] = "The passwords do not match.Please recheck your passwords!";
     }
+    if(!empty($_POST)) {
+    // check length of $_POST['username']
+
+    if (strlen($_POST['name']) <5){
+                    $errors['name']= "Username need to be 5 characters or longer!Please Try Again!";           
+    }
+
+    // check length of $_POST['password']
+    if (strlen($_POST['password']) <8){
+           $errors['password']="The Minimum Character for password should be 8!Please Try Again!"; 
+    }}
     $email_check = "SELECT * FROM usertable WHERE email = '$email'";
     $res = mysqli_query($con, $email_check);
     if(mysqli_num_rows($res) > 0){
@@ -88,6 +99,16 @@ If there is no error during signup process, which means that the user has user n
 
     //if user click login button
     if(isset($_POST['login'])){
+        $time=time()-60;
+        $ip_address=getIpAddr();
+        $check_login_row=mysqli_fetch_assoc(mysqli_query($con,"SELECT count(*) as total_count from login_log WHERE try_time>$time and ip_address='$ip_address'"));
+        $total_count=$check_login_row['total_count'];
+        if ($total_count==3) {
+            $errors['email']  = "Too many failed Login attempts!Try again in 1 minute!";
+        }
+
+
+        else{ 
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $check_email = "SELECT * FROM usertable WHERE email = '$email'";
@@ -102,21 +123,45 @@ If there is no error during signup process, which means that the user has user n
                   $_SESSION['email'] = $email;
                   $_SESSION['password'] = $password;
                     header('location: AdminPage/AdminPage.html');
+
+                    mysqli_query($con,"DELETE FROM login_log WHERE ip_address='$ip_address'");
                 }else{
-                    $info = "It's look like you haven't still verify your email - $email";
+                    $info = "It looks like you still have not verified your email address. - $email";
                     $_SESSION['info'] = $info;
                     header('location: user-otp.php');
                 }
             }else{
-                $errors['email'] = "Incorrect email or password!";
+                $total_count++;
+                $rem_attm=3-$total_count;
+
+                if ($rem_attm==0) {
+                    $errors['email'] = "Too many failed Login attempts! Try again in 1 minute!";
+                }else{
+                    $errors['email'] = "Incorrect email or password! $rem_attm attempts remaining!";
+                }
+                $try_time=time();
+                mysqli_query($con,"INSERT INTO login_log(ip_address,try_time) VALUES ('$ip_address','$try_time') ");
+                // when ever  auser enters wrong password, it is stored in the database table login_log
+                
             }
         }else{
-            $errors['email'] = "It's look like you're not yet a member! Click on the bottom link to signup.";
+            $errors['email'] = "It looks like you're not a member yet! Click on the link at the  bottom  to signup.";
         }
+
+        }  
     }
 
 /*When the user clicks on the login button, $email variable stores the email value of user input and $password stores the password value of the user input. $check_email variable checks whether the input email is present in the database table or not. If the email is present in the database table, its status is checked whether it is verified or not. If the email present in the database table is verified then the password is checked whether it matches with the one in the database table or not. The user is notified stating that the email needs to be verified if the status is notverified. If an unauthorized user tries to login, they are requested for sign up in order to access login feature. When the email and password match with the ones in the database after verification, the user is directed to the admin panel.*/
-
+ function getIpAddr(){
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ipAddr=$_SERVER['HTTP_CLIENT_IP'];
+    }elseif(!empty($_SERVER['HTTP_X_FORWARD_FOR'])) {
+        $ipAddr=$_SERVER['HTTP_X_FORWARD_FOR'];
+    }else{
+        $ipAddr=$_SERVER['REMOTE_ADDR'];
+    }
+    return $ipAddr;
+ }
 
 
 
@@ -134,21 +179,21 @@ If there is no error during signup process, which means that the user has user n
             if($run_query){
                 $subject = "Password Reset Code";
                 $message = "Your password reset code is $code";
-                $sender = "From: kunganyima171@gmail.com";
+                $sender = "From: taxcalculator123@gmail.com";
                 if(mail($email, $subject, $message, $sender)){
-                    $info = "We've sent a passwrod reset otp to your email - $email";
+                    $info = "We've sent a passwrod reset otp code to your email - $email";
                     $_SESSION['info'] = $info;
                     $_SESSION['email'] = $email;
                     header('location: reset-code.php');
                     exit();
                 }else{
-                    $errors['otp-error'] = "Failed while sending code!";
+                    $errors['otp-error'] = "Failed while sending the otp code!";
                 }
             }else{
                 $errors['db-error'] = "Something went wrong!";
             }
         }else{
-            $errors['email'] = "This email address does not exist!";
+            $errors['email'] = "The provided email address does not exist!";
         }
     }
 
