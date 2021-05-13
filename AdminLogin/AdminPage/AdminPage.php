@@ -13,15 +13,15 @@ $results = mysqli_query($con, "SELECT * FROM info");
 
 <body>
 <!--alert msg-->
-<?php if (isset($_SESSION['msg'])): ?>
-    <div class="alert-msg">
-        <?php
+<?php if (isset($_SESSION['msg'])) : ?>
+        <div class="alert-msg">
+            <?php
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
-        ?>
-    </div>
-<?php endif ?>
-<!--alert msg-->
+            ?>
+        </div>
+    <?php endif ?>
+    <!--alert msg-->
     <header class="main-header">
         <div class="container row">
             <div class="page-title">
@@ -42,7 +42,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
             <div class="search-bar">
                 <nav class="main-nav">
                     <ul>
-                        <li><button type="button"><a href="../login-user.php">Logout</a></button></li>
+                        <li><button type="button"><a href="login.php">Logout</a></button></li>
                     </ul>
                 </nav>
             </div>
@@ -50,27 +50,18 @@ $results = mysqli_query($con, "SELECT * FROM info");
     </header>
 
     <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <!-- display database-->
-            <tbody>
-               <?php while ($row = mysqli_fetch_array($results)) { ?>
-                <tr>
-                    <td><?php echo $row['title']; ?></td>
-                    <td>
-                        <button class="btnn" type="button" onclick="document.location='adminView.php?edit=<?php echo $row['id']; ?>'">Edit</button></a>
-                        <button class="btnn" type="button"  onclick= "document.location='newsController.php?del=<?php echo $row['id']; ?>'">Delete</button>
-                    </td>
-                </tr>
-                <?php } ?>
-            </tbody>
-            <!-- display database-->
-        </table>
+        <section class="article-list group">
+        <?php while ($row = mysqli_fetch_array($results)) { ?>
+            <figure class="article-info">
+                <img src="<?php echo "../../public/storage/images/blog/".$row['image']; ?>" class="myDIV" alt="">
+                <div class="overlay"><button class="button" onclick="document.location='adminView.php?edit=<?php echo $row['id']; ?>'">Edit</button> <button class="button" onclick="document.location='newsController.php?del=<?php echo $row['id']; ?>'">Delete</button></div>
+                <figcaption>
+                <?php echo $row['title']; ?>
+                </figcaption>
+            </figure>
+            <?php } ?>
+            
+        </section>
         
         <button class="open-button" onclick="openForm()">Add News</button>
 
