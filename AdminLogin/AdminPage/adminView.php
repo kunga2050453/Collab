@@ -38,14 +38,17 @@
         </div>  
     </header>
 
-    <form class="article-container" action="newsController.php" method="post">
-
+    <form class="article-container" action="newsController.php" method="post" enctype="multipart/form-data">
         <label for="fname">Title</label><br>
         <input type="text" id="title" name="title" value="<?php echo $blog['title']; ?>"><br>
         <input type="text" id="id" name="id" value="<?php echo $blog['id']; ?>" hidden><br>
         <label for="lname">Description:</label><br>
         <textarea class="description-box" rows="4" cols="50" name="description">
-    <?php echo $blog['description']; ?></textarea>
+        <?php echo $blog['description']; ?></textarea>
+        <img src="<?php echo "../../public/storage/images/blog/".$blog['image']; ?>" alt="<?php echo $blog['title']; ?>" srcset="" width="500" height="300">
+        Select image to replace above image:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="text" id="hiddenImageFile" name="hiddenImageFile" value="<?php echo $blog['image']; ?>" hidden><br>
         <div class="input-group">
             <?php if ($update == true): ?>
                 <button type="submit" class="save-btn" name="update">Update</button>

@@ -75,20 +75,14 @@ $results = mysqli_query($con, "SELECT * FROM info");
         <button class="open-button" onclick="openForm()">Add News</button>
 
         <div class="chat-popup" id="myForm">
-            <form class="form-container" action="AdminPage.php" method="post">
+            <form class="form-container" action="AdminPage.php" method="post" enctype="multipart/form-data">
                 <h1>News</h1>
                 <label for="title"><b>Title</b></label>
                 <textarea placeholder="Title" name="title" required></textarea>
                 <label for="description"><b>Description</b></label>
                 <textarea placeholder="Description" name="description" required></textarea>
-                <label for="image"><b>Image</b></label>
-                <div class="drag-area">
-                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <header>Drag & Drop to Upload Image</header>
-                    <span>OR</span>
-                    <button>Browse File</button>
-                    <input type="file" hidden>
-                </div>
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
                 <button type="submit" name="post" class="btn">Post</button>
                 <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>
