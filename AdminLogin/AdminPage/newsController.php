@@ -8,8 +8,8 @@ $image = "";
 $id = "0";
 $update = true;
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 if (isset($_POST['post'])) {
 	$title = $_POST['title'];
@@ -31,7 +31,7 @@ if (isset($_POST['post'])) {
 			echo "Sorry, your file was not uploaded.";
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "$uploads_dir/$target_file")) {
-				echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+				// echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
 			} else {
 				echo "Sorry, there was an error uploading your file.";
 			}
@@ -47,7 +47,11 @@ if (isset($_POST['post'])) {
 // delete records
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];
+	$result = mysqli_query($con, "SELECT image FROM info WHERE id=$id");
+	$blog = mysqli_fetch_array($result);
 	mysqli_query($con, "DELETE FROM info WHERE id=$id");
+	$uploads_dir = '../../public/storage/images/blog';
+	unlink($uploads_dir.'/'.$blog['image']);
 	$_SESSION['msg'] = "News deleted";
 	header('location: AdminPage.php');
 }
@@ -81,7 +85,7 @@ if (isset($_POST['update'])) {
 			echo "Sorry, your file was not uploaded.";
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "$uploads_dir/$target_file")) {
-				echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+				// echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
 			} else {
 				echo "Sorry, there was an error uploading your file.";
 			}

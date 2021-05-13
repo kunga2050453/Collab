@@ -1,4 +1,4 @@
-<?php require_once "newsController.php"; 
+<?php require_once "newsController.php";
 $results = mysqli_query($con, "SELECT * FROM info");
 ?>
 <!DOCTYPE html>
