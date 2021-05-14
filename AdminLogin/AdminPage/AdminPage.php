@@ -57,7 +57,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
                     }
              ?>
 
-            <div class="search-bar">
+            <div class="btn1">
                 <nav class="main-nav">
                     <ul>
                         <li><button type="button"><a href="../login-user.php">Logout</a></button></li>
