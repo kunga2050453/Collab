@@ -21,7 +21,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
             ?>
         </div>
     <?php endif ?>
-    <!--alert msg-->
+<!--alert msg-->
     <header class="main-header">
         <div class="container row">
             <div class="page-title">
@@ -29,7 +29,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="taxcalculator.php">Tax Calculator</a></li>
+                    <li><a href="tax-calculator/taxcalculator.php">Tax Calculator</a></li>
                     <li><a href="userfeed.php">User Feed</a></li>
                 </ul>
             </nav>
