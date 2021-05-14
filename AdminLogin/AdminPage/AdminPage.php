@@ -21,7 +21,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
             ?>
         </div>
     <?php endif ?>
-    <!--alert msg-->
+<!--alert msg-->
     <header class="main-header">
         <div class="container row">
             <div class="page-title">
