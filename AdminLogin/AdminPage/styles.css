@@ -96,6 +96,7 @@ img {
     padding: 12px;
     margin-left: -4px;
     outline: none;
+    cursor: pointer;
 }
 
 .article-list {
