@@ -11,6 +11,9 @@ if(isset($_POST['signup'])){
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+
+    
+
     if($password !== $cpassword){
         $errors['password'] = "The passwords do not match.Please recheck your passwords!";
     }
@@ -25,6 +28,14 @@ if(isset($_POST['signup'])){
     if (strlen($_POST['password']) <8){
            $errors['password']="The Minimum Character for password should be 8!Please Try Again!"; 
     }}
+
+
+
+
+    $check_email= "SELECT * FROM admins WHERE email = '$email'";
+    $result = mysqli_query($con, $check_email);
+    if(mysqli_num_rows($result) > 0){
+    
     $email_check = "SELECT * FROM usertable WHERE email = '$email'";
     $res = mysqli_query($con, $email_check);
     if(mysqli_num_rows($res) > 0){
@@ -55,11 +66,16 @@ if(isset($_POST['signup'])){
         }else{
             $errors['db-error'] = "Failed while inserting data into database!";
         }
+    }   
+    }else{
+        $errors['email'] = "Sorry! Only verified admins are allowed to sign up!";
     }
 }
 /* During a Sign-Up process, $_POST command helps to input the user’s name, email, password to the database. Password (password) and Confirmation (cpassword) password are checked. If these two does not match then the user is notified that the passwords do not match. Moreover, the entered email address for the sign-up process is also checked in the database. If the entered email is present in the database, then the user is notified for using existing email address.
 If there is no error during signup process, which means that the user has user non existing email address in the database and the passwords matches, the data are stored in the table in the database. Password is stored in encrypted format with the help of hash function along with a random code which is used as the OTP code for email verification and the status is set to “notverified”.  When the user clicks on the signup button with no error present, the user is directed to the “user-otp.php” file for email verification using OTP code.
 */
+
+
 
 
 
@@ -122,7 +138,7 @@ If there is no error during signup process, which means that the user has user n
                 if($status == 'verified'){
                   $_SESSION['email'] = $email;
                   $_SESSION['password'] = $password;
-                    header('location: AdminPage/AdminPage.html');
+                    header('location: AdminPage/AdminPage.php');
 
                     mysqli_query($con,"DELETE FROM login_log WHERE ip_address='$ip_address'");
                 }else{
@@ -181,7 +197,7 @@ If there is no error during signup process, which means that the user has user n
                 $message = "Your password reset code is $code";
                 $sender = "From: taxcalculator123@gmail.com";
                 if(mail($email, $subject, $message, $sender)){
-                    $info = "We've sent a passwrod reset otp code to your email - $email";
+                    $info = "We've sent a password reset otp code to your email - $email";
                     $_SESSION['info'] = $info;
                     $_SESSION['email'] = $email;
                     header('location: reset-code.php');

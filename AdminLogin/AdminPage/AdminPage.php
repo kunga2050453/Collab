@@ -35,14 +35,32 @@ $results = mysqli_query($con, "SELECT * FROM info");
             </nav>
 
             <div class="search-bar">
-                <input type="text" name="email" id="" required>
-                <button type="submit">Add Admin</button>
+                <form method="POST">
+                    <input type="email" name="emailaddress" placeholder=" Admin Email" Required>
+                    <button type="submit" name="addadmin">Add Admin</button>
+                </form>
             </div>
+            <?php 
+                if(isset($_POST['addadmin']))
+                {       
+                    $email = $_POST['emailaddress'];
+                    $insert=mysqli_query($con,"INSERT INTO admins(email) VALUES ('$email')");
+                    if(!$insert)
+                    {
+                    $errors['addadmin'] = "Failed to add new admin!";
+                        }
+                    else
+                    {
+                    $info = "A new admin was successfull addes.<br> Now you can sign up with that email address!";
+                    }
 
-            <div class="search-bar">
+                    }
+             ?>
+
+            <div class="btn1">
                 <nav class="main-nav">
                     <ul>
-                        <li><button type="button"><a href="login.php">Logout</a></button></li>
+                        <li><button type="button"><a href="../login-user.php">Logout</a></button></li>
                     </ul>
                 </nav>
             </div>
