@@ -1,11 +1,7 @@
 <?php
 	$grossIncome = filter_input(INPUT_POST, 'grossIncome',
         FILTER_VALIDATE_FLOAT);
-    if(isset($_POST['formSubmit']) )
-    {
-      $varGender = $_POST['formGender'];
-      $errorMessage = ""; 
-    }
+
     $state = filter_input(INPUT_POST, 'formGender',
         FILTER_VALIDATE_FLOAT);
     // validate grossIncome
@@ -15,6 +11,16 @@
     else if ($grossIncome < 1000 ) {
         $error_message = 'Investment must be at least or greater than Rs. 1,000.'; 
     }
+//    else if ($_POST["formGender"] == FALSE && $_POST["formState"] == FALSE) {
+//        $error_message = 'Select your Marital Status and Gender'; 
+//    }
+//    else if ($_POST["formGender"] == TRUE && $_POST["formState"] == FALSE) {
+//        $error_message = 'Select your Marital Status'; 
+//    }
+//    else if ($_POST["formGender"] == FALSE && $_POST["formState"] == TRUE) {
+//        $error_message = 'Select your Gender'; 
+//    }
+    
     // set error message to empty string if no invalid entries
     else {
         $error_message = ''; 
@@ -134,6 +140,13 @@
 			
 		echo "Your total income tax is Rs. " . $totalIncomeTax_f;
 	    ?>
+<!--
+        <div id = "buttons">
+			<label>&nbsp;</label>
+        	<input onclick="goBack()" value="Go Back">
+        	<br>
+        </div>
+-->
 	</main>
 </body>
 </html>

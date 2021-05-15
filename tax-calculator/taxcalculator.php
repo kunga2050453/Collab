@@ -35,9 +35,6 @@
                   <option value="U">Unmarried</option>
                 </select>
             </div>
-            <div class="range">
-                <input type="range" value="<?php echo htmlspecialchars($grossIncome); ?>" class="slider" name="grossIncome" min="0" max="5000000000">
-            </div>
             <br>
 			<label> Income: </label>
 			<input type="text" name="grossIncome" 
