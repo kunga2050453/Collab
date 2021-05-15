@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("tax-background.jpg");
+  	background-repeat: no-repeat;
+  	background-size: cover;
+    padding: 22em;
+}
+main {
+    width: 450px;
+    margin: 0 auto;
+    padding: 1em;
+    background: white;
+    border: 2px solid Navy;
+    border-radius: 15px;
+  	box-shadow: 0px 15px 20px rgba(0,0,0,0.5);
+  	opacity: 85%;
+    font-variant: small-caps;
+    font-size: larger;
+}
+h1 {
+    margin-top: 0;
+    color: Navy;
+    text-align: center;
+}
+form{
+    padding-top: 1.3em;
+}
+label {
+    width: 9em;
+    float: left;
+    padding-right: 1em;
+    padding-bottom: .5em;
+    font-weight: bolder;
+    text-align: center;
+}
+#data input {
+    float: left;
+    width: 15em;
+    margin-bottom: 1.5em;
+    height: 1.5em;
+}
+#buttons input {
+    float: left;
+    margin-bottom: .5em;
+}
+br {
+    clear: left;
+}
+.error {
+    color: red;
+    font-weight: bold;
+}
