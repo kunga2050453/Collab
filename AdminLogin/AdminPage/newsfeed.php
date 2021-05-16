@@ -56,6 +56,21 @@ $blog = mysqli_fetch_array($result);
         </div>
     
     </div>
+
+    <div class="comment-container">
+    <div class="inner-content">
+    <p style="font-family: sans-serif; font-size:28px; color:white"> Leave a comment </p>
+    <form action = "" method="post" class="">
+    <textarea placeholder="write a comment.." class="comment-box" cols="45" rows="8" aria-required="true"></textarea>
+    <button class="comment-btn" type="button" onclick="">Post comment</button> 
+    </form>
+    <div class="comment">
+    <p>
+    good post.
+    </p>
+    </div>
+    </div>
+    </div>
 </body>
 
 </html>

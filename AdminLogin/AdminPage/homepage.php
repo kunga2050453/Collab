@@ -49,7 +49,7 @@
                     <?php echo $row['description']; ?>
                 </p>
             </div>
-            <button type="button"><a href="newsfeed.php?id=<?php echo $row['id']; ?> ">Read Full</a></button>
+            <button type="button" class="comment-btn" onclick="document.location='newsfeed.php?id=<?php echo $row['id']; ?> '">Read Full</button>
         <?php } ?>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
