@@ -1,5 +1,11 @@
-<?php require_once "newsController.php";
-$results = mysqli_query($con, "SELECT * FROM info");
+<?php 
+require "../connection.php";
+// die($uk);
+
+$id = $_GET['id']; 
+$result = mysqli_query($con, "SELECT * FROM info WHERE id=$id");
+$blog = mysqli_fetch_array($result);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +18,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
     <title>News Feed</title>
 </head>
 
-<body>
+<body style="background-color:#181A1B;">
     <header class="main-header">
         <div class="container row">
             <div class="page-title">
@@ -21,7 +27,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
             <nav class="main-nav">
                 <ul>
                     <li><a href="taxcalculator.php">Tax Calculator</a></li>
-                    <li><a href="userfeed.php">User Feed</a></li>
+                    <li><a href="homepage.php">User Feed</a></li>
                 </ul>
             </nav>
 
@@ -36,17 +42,19 @@ $results = mysqli_query($con, "SELECT * FROM info");
     </header>
 
     <div class="blog-box">
+    
         <div class="blog-title">
-            <p>Title</p>
+            <p><?php echo $blog['title']; ?></p>
         </div>
         <div class="blog-image">
-            <img src="<?php echo "../../public/storage/images/blog/" . $row['image']; ?>" class="myDIV" alt="">
+            <img src="<?php echo "../../public/storage/images/blog/" . $blog['image']; ?>" class="myDIV" alt="">
         </div>
         <div class="blog-description">
             <p>
-                Description
+            <?php echo $blog['description']; ?>
             </p>
         </div>
+    
     </div>
 </body>
 

@@ -5,6 +5,7 @@ require "../connection.php";
 $title = "";
 $description = "";
 $image = "";
+// die($id);
 $id = "0";
 $update = true;
 
@@ -14,6 +15,7 @@ $update = true;
 if (isset($_POST['post'])) {
 	$title = $_POST['title'];
 	$description = $_POST['description'];
+	
 
 	if ($_FILES["fileToUpload"]["name"]) {
 		$uploads_dir = '../../public/storage/images/blog';
@@ -51,7 +53,7 @@ if (isset($_GET['del'])) {
 	$blog = mysqli_fetch_array($result);
 	mysqli_query($con, "DELETE FROM info WHERE id=$id");
 	$uploads_dir = '../../public/storage/images/blog';
-	unlink($uploads_dir.'/'.$blog['image']);
+	unlink($uploads_dir . '/' . $blog['image']);
 	$_SESSION['msg'] = "News deleted";
 	header('location: AdminPage.php');
 }
@@ -68,7 +70,9 @@ if (isset($_POST['update'])) {
 	$title = $_POST['title'];
 	$description = $_POST['description'];
 	$image = $_POST['hiddenImageFile'];
-	
+
+	// echo $description; die;
+
 	if ($_FILES["fileToUpload"]["name"]) {
 		$uploads_dir = '../../public/storage/images/blog';
 		$target_file = basename($_FILES["fileToUpload"]["name"]);
@@ -86,16 +90,20 @@ if (isset($_POST['update'])) {
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "$uploads_dir/$target_file")) {
 				// echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+
 			} else {
 				echo "Sorry, there was an error uploading your file.";
 			}
 		}
 		$image = $target_file;
 	}
-
+	// echo $description; die;
+	// $sql = "UPDATE info SET title='$title', description='$description', image='$image' WHERE id=$id";
+	// echo $sql;die;
 	mysqli_query($con, "UPDATE info SET title='$title', description='$description', image='$image' WHERE id=$id");
 	$_SESSION['msg'] = "news updated!";
 	$result = mysqli_query($con, "SELECT * FROM info WHERE id=$id");
 	$blog = mysqli_fetch_array($result);
 	header('location: AdminPage.php');
 }
+
