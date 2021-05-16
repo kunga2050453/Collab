@@ -8,12 +8,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8" />
 	<title> Tax Calculator </title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body> 
+    <button class="button1"><a href="userfeed">Go Back</a></button>
 	<main> 
     <h1> Tax Calculator </h1> 
      <?php if (!empty($error_message)) { ?>
@@ -26,19 +28,19 @@
             <div class="dropdown">
                 <select name="formGender" class="form-control">
                   <option value="">Gender</option>
-                  <option value="M">Male</option>
-                  <option value="F">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
                 <select name="formState" class="form-control">
                   <option value="">Marital Status</option>
-                  <option value="M">Married</option>
-                  <option value="U">Unmarried</option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
                 </select>
             </div>
             <br>
 			<label> Income: </label>
 			<input type="text" name="grossIncome" 
-		       value="<?php echo htmlspecialchars($grossIncome); ?>">
+		       value="<?php echo htmlspecialchars($grossIncome); ?>" placeholder="Your Income">
 		    <br>
 		</div>
 		<div id = "buttons">
