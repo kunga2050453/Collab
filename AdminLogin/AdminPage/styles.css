@@ -494,6 +494,8 @@ tr:nth-child(even) {
     width: 70%;
     padding: 15px 40px;
     color: white;
+    margin: auto;
+    width: 60%;
 }
 
 .blog-title {

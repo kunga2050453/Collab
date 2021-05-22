@@ -3,8 +3,8 @@
 session_start();
 require "../connection.php";
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
   $results = mysqli_query($con,
