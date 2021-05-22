@@ -24,13 +24,7 @@
                 </ul>
             </nav>
 
-            <div class="search-bar">
-                <nav class="main-nav">
-                    <ul>
-                        <li><button type="button"><a href="login.php">Logout</a></button></li>
-                    </ul>
-                </nav>
-            </div>
+            
         </div>
     </header>
 
