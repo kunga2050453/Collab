@@ -1,11 +1,4 @@
-<?php 
-require "../connection.php";
-// die($uk);
-
-$id = $_GET['id']; 
-$result = mysqli_query($con, "SELECT * FROM info WHERE id=$id");
-$blog = mysqli_fetch_array($result);
-
+<?php  require_once "commentController.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +48,25 @@ $blog = mysqli_fetch_array($result);
             </p>
         </div>
     
+    </div>
+
+    <div class="comment-container">
+    <div class="inner-content">
+    <p style="font-family: sans-serif; font-size:28px; color:white"> Leave a comment </p>
+    <form action = "newsfeed.php" method="post" class="">
+    <textarea placeholder="write a comment.." name="comment" class="comment-box" cols="45" rows="8" aria-required="true" required></textarea>
+    <input type="text" name="id" value="<?php echo $id?>" hidden>
+    <button class="comment-btn" type="submit">Post comment</button> 
+    </form>
+    <?php while ($comment = mysqli_fetch_array($comments)) { ?>
+    <div class="comment">
+    
+    <p>
+    <?php echo $comment['comment']; ?>
+    </p>
+    </div>
+    <?php } ?>
+    </div>
     </div>
 </body>
 

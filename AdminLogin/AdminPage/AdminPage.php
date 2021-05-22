@@ -55,15 +55,25 @@ $results = mysqli_query($con, "SELECT * FROM info");
     <div class="container">
         <?php if(isset($_SESSION['msg'])) { ?>
             <div class="alert success">
-                <span class="closebtn">&times;</span>
+             
                 <strong>Success! </strong> <?php echo $_SESSION['msg']; ?>
+                <span class="closebtn">&times;</span>
             </div>
+
         <?php unset($_SESSION['msg']); } ?>
+
+        <?php if(!empty($errors)){
+            
+            foreach($errors as $error) {
+                echo $error;
+            }
+        }?>
         <section class="article-list group">
             <?php while ($row = mysqli_fetch_array($results)) { ?>
                 <figure class="article-info">
                     <img src="<?php echo "../../public/storage/images/blog/" . $row['image']; ?>" class="myDIV" alt="">
-                    <div class="overlay"><button class="button" onclick="document.location='adminView.php?edit=<?php echo $row['id']; ?>'">Edit</button> <button class="button" onclick="document.location='newsController.php?del=<?php echo $row['id']; ?>'">Delete</button></div>
+                    <div class="overlay"><button class="button" onclick="document.location='adminView.php?edit=<?php echo $row['id']; ?>'">Edit</button> 
+                    <button class="button" onclick="alert('are you sure you want to delete?');document.location='newsController.php?del=<?php echo $row['id']; ?>'">Delete</button></div>
                     <figcaption>
                         <?php echo $row['title']; ?>
                     </figcaption>
