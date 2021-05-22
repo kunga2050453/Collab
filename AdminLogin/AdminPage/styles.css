@@ -8,6 +8,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #181A1B;
 }
 
 img {
@@ -93,6 +94,8 @@ img {
 .search-bar input {
     padding: 10px;
     width: 240px;
+    background-color: #181A1B;
+    border: 1px solid grey;
 }
 
 .search-bar button {
@@ -125,10 +128,14 @@ img {
 
 .article-info figcaption {
     padding: 20px 10px;
-    border: 1px solid #aaa;
-    background-color: #eee;
+    border: 1px solid #282C35;
+    background-color: #282C35;
     margin-top: 5px;
     font-weight: bold;
+    color: white;
+    text-align: center;
+    word-break: break-all;
+    height: 75px;
 }
 
 .overlay {
@@ -213,6 +220,7 @@ img {
 
 .copyright {
     float: left;
+    color: white;
 }
 
 .footer-links {
@@ -350,14 +358,15 @@ img {
     position: fixed;
     bottom: 0;
     right: 15px;
-    border: 3px solid #f1f1f1;
+    border: 3px solid black;
     z-index: 9;
 }
 
 .form-container {
     max-width: 500px;
     padding: 10px;
-    background-color: white;
+    background-color: #181A1B;
+    color: white;
 }
 
 .form-container textarea {
@@ -365,7 +374,7 @@ img {
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
-    background: #f1f1f1;
+    background: #282C35;
     resize: none;
     min-height: 50px;
 }

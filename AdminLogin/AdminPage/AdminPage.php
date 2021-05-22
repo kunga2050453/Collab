@@ -19,7 +19,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="taxcalculator.php">Tax Calculator</a></li>
+                    <li><a href="tax-calculator/taxcalculator.php">Tax Calculator</a></li>
                     <li><a href="homepage.php">User Feed</a></li>
                 </ul>
             </nav>
@@ -42,7 +42,7 @@ $results = mysqli_query($con, "SELECT * FROM info");
             }
             ?>
 
-            <div class="btn1">
+            <div class="search-bar">
                 <nav class="main-nav">
                     <ul>
                         <li><button type="button"><a href="../login-user.php">Logout</a></button></li>
@@ -91,8 +91,8 @@ $results = mysqli_query($con, "SELECT * FROM info");
             <div class="copyright">Copyright &copy; 2019. All rights reserved</div>
             <div class="footer-links">
                 <ul>
-                    <li><a href="taxcalculator.php">Tax Calculator</a></li>
-                    <li><a href="userfeed.php">User Feed</a></li>
+                    <li><a href="tax-calculator/taxcalculator.php">Tax Calculator</a></li>
+                    <li><a href="newsfeed.php">User Feed</a></li>
                 </ul>
             </div>
         </footer>
